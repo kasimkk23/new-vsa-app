@@ -12,17 +12,20 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 
 
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  port: process.env.DB_PORT, // e.g. 7524
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to MySQL");
+  if (err) {
+    console.error('❌ DB connection failed:', err.message);
+  } else {
+    console.log('✅ Connected to MySQL DB!');
+  }
 });
 
 // Endpoint to upload and save Excel data to DB
