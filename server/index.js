@@ -11,6 +11,14 @@ const PORT = 5000;
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 
+console.log("Trying to connect with:");
+console.log("Host:", process.env.DB_HOST);
+console.log("Port:", process.env.DB_PORT);
+console.log("User:", process.env.DB_USER);
+console.log("Password:", process.env.DB_PASSWORD ? "[hidden]" : "NOT SET");
+console.log("Database:", process.env.DB_NAME);
+
+
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -22,9 +30,9 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error('❌ DB connection failed:', err.message);
+    console.error("❌ DB connection failed:", err); // 👈 not just err.message
   } else {
-    console.log('✅ Connected to MySQL DB!');
+    console.log("✅ Connected to MySQL DB!");
   }
 });
 
