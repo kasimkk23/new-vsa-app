@@ -3,6 +3,7 @@ const QRCode = require('qrcode'); // Import QRCode package
 const cors = require("cors");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+require('dotenv').config(); // ✅ Add this at the top
 
 const app = express();
 const PORT = 5000;
